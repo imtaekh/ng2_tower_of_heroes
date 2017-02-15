@@ -1,9 +1,5 @@
-import { Component } from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
+import { Component, EventEmitter } from '@angular/core';
+import { Hero } from './hero';
 
 const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
@@ -30,14 +26,10 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div>
-        <label>{{selectedHero.id}}</label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </div>
-      <input type="button" (click)="onSelect(null)" value="close">
-    </div>
+    <my-hero-detail
+      [hero]="selectedHero"
+      (heroChange)="selectedHeroChange($event)">
+    </my-hero-detail>
   `,
   styles: [`
     .selected {
@@ -97,4 +89,17 @@ export class AppComponent {
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
+
+  showSelectedHero(): void{
+    console.log("show: ", this.selectedHero);
+  }
+
+  removeSelectedHero(): void{
+    this.selectedHero = null;
+  }
+
+  selectedHeroChange(event: Hero) {
+    this.selectedHero = event;
+  }
+
 }
