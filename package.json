@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "QuickStart package.json from the documentation, supplemented with testing support",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "node server.js",
+    "local": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
@@ -25,6 +26,7 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
+    "express": "^4.14.0",
 
     "angular-in-memory-web-api": "~0.2.4",
     "systemjs": "0.19.40",
@@ -53,5 +55,9 @@
     "@types/node": "^6.0.46",
     "@types/jasmine": "^2.5.36"
   },
-  "repository": {}
+  "repository": {},
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
+  }
 }
